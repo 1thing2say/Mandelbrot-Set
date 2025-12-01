@@ -10,6 +10,8 @@ int main()
     int height = VideoMode::getDesktopMode().height / 2;
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(width, height), "SFML window");
+    window.setFramerateLimit(60);
+
     ComplexPlane complexPlane(width, height);
     cout << width << " " << height << endl; // For debugging
  
@@ -17,7 +19,7 @@ int main()
     sf::Font font;
     if (!font.loadFromFile("font/SFCamera.ttf"))
         return EXIT_FAILURE;
-    sf::Text text("hi", font, 50);
+    sf::Text text("hi", font, 20);
  
     // Start the game loop
     while (window.isOpen())

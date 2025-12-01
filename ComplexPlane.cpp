@@ -54,11 +54,11 @@ void ComplexPlane::updateRender()
 {
     if (m_state == State::CALCULATING)
     {
-        for (int i = 0; i < m_pixel_size.x; i++)
+        for (int i = 0; i < m_pixel_size.y; i++)
         {
-            for (int j = 0; j < m_pixel_size.y; j++)
+            for (int j = 0; j < m_pixel_size.x; j++)
             {
-                m_vArray[j + i * m_plane_size.x].position = {(float)j, (float)i};
+                m_vArray[j + i * m_pixel_size.x].position = {(float)j, (float)i};
                 Vector2f coord = mapPixelToCoords(Vector2i(j, i));
                 int iterations = countIterations(coord);
                 Uint8 r, g, b;
@@ -101,9 +101,9 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
     else 
     {
-        r = static_cast<Uint8>((count * 255) / MAX_ITER);
-        g = static_cast<Uint8>((count * 255) / MAX_ITER);
-        b = static_cast<Uint8>((count * 64) / MAX_ITER);
+        r = static_cast<Uint8>(64 - (count * 255) / MAX_ITER);
+        g = static_cast<Uint8>(128 - (count * 255) / MAX_ITER);
+        b = static_cast<Uint8>(255 - (count * 255) / MAX_ITER);
     }
 }
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
