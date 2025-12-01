@@ -2,7 +2,7 @@ CC = g++
 
 CFLAGS = -c -g -Wall -std=c++17 -fpermissive
 
-EXENAME = hi
+EXENAME = hi.out
 
 default: main.o ComplexPlane.o
 	$(CC) main.o ComplexPlane.o -o $(EXENAME) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
